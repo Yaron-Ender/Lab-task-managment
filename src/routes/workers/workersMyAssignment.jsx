@@ -31,7 +31,7 @@ orderByDateFunction(myAssignmentObj);
 })
 })
 }
-},[document])
+},[document,myAssignmentObj,myAssignmentsLength,orderByDateFunction,profession,restricUseEffectIteration,userID])
 };
 
 export default WorkersMyAssignment;

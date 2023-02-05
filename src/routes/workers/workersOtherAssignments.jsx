@@ -49,7 +49,7 @@ const WorkersOtherAssignments = ({ assignmentID, profession, docNum }) => {
       });
       });
     }
-  }, [document, profession, otherAssignmentObj]);
+  }, [document, profession, otherAssignmentObj,docNum,restrictUseEffectIteration]);
   return (
     <>
       {otherAssignmentObj.test.length > 0 &&

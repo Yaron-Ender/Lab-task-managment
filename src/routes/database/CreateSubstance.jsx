@@ -40,7 +40,6 @@ const CreateSubstance = ({ closeCreateSubstanceComp }) => {
   const [substanceName, setSubstanceName] = useState("");
   const [monograph, setMonograph] = useState([]); //All the monograpes that the user create
   const [,setOpenTextareaPannel] = useState(false);
-  const [popup,setPopup]=useState(false);
   const [note,setNote]=useState([]);
   const { selectCompCreateSunstanceStyle } = useStyle();
   //FUNCTIONS
@@ -183,7 +182,6 @@ break;
     monograph.forEach((item) => {
       if (item.id === id) {
         item["openNote"] = true;
-        console.log(item);
         setOpenTextareaPannel(true);
       }
     });

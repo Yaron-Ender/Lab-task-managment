@@ -1,16 +1,16 @@
 
-import { useEffect,useState,useMemo } from "react";
+import { useEffect,useState} from "react";
 import { useCollection } from "../../hooks/useCollection";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useDocument } from "../../hooks/useDocument";
 import WorkersMyAssignment from "./workersMyAssignment";
 import WorkersSameTechAssignment from "./workersSameTechAssignment";
 import WorkersOtherAssignments from "./workersOtherAssignments";
-import { useFriestore } from "../../hooks/useFirestore"; 
+// import { useFriestore } from "../../hooks/useFirestore"; 
 import { useCallback } from "react";
 import WorkersMyAssignmentByDate from "./workersMyAssignmentByDate";
 const WorkersAssignments = () => {
-  const { correctAssginments } = useFriestore("users"); 
+  // const { correctAssginments } = useFriestore("users"); 
   const { arrayOfDocID } = useCollection("assignments");
   const [orderbyDate,setOrderByDate] =useState([])
   const { user } = useAuthContext();
@@ -30,12 +30,13 @@ const WorkersAssignments = () => {
   return new Date(b.details.dueDate).getTime()  - new Date (a.details.dueDate).getTime()
   })))
 }
-}, [orderbyDate]);
-  const sendTofireBase = useMemo(async()=>{
-    if (userDocuemnt) {
-await correctAssginments(myAssignments, userDocuemnt["id"]);
-    }
-  },[myAssignments])
+}, []);
+
+//   const sendTofireBase = useMemo(async()=>{
+//     if (userDocuemnt) {
+// await correctAssginments(myAssignments, userDocuemnt["id"]);
+//     }
+//   },[myAssignments])
   
   useEffect(() => {
     if (userDocuemnt) {
@@ -44,9 +45,11 @@ await correctAssginments(myAssignments, userDocuemnt["id"]);
       setMyAssignments((prev) => (prev = prev.filter((id) => arrayOfDocID.includes(id))));
       
     Object.keys(userDocuemnt["position"]).map((pos) => {
-      if (userDocuemnt["position"][pos]) setProfession(pos);});
-    
-    }
+      if (userDocuemnt["position"][pos]){
+       setProfession(pos);
+      }
+    });
+  }
   }, [userDocuemnt, arrayOfDocID]);
   
   if (profession !== "supervisor" && profession !== "manager") {

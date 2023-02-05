@@ -22,7 +22,7 @@ const Navbar = () => {
     navigate("/workers");
   }
 
-},[document])
+},[document,navigate])
     return (
       <div>
     <nav className="main-navbar">

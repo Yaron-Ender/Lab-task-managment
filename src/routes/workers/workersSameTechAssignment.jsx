@@ -46,7 +46,7 @@ Object.entries(monographesObj).forEach((monoPlusTechArr)=>{
 })
 })
 }
-},[document])
+},[document,docNum,otherAssignmentObj,profession,restrictUseEffectIteration,userID])
 return (
 <>
 {rerender&&otherAssignmentObj.test.length>0&&otherAssignmentObj.test.map((test,index)=>(

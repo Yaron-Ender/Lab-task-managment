@@ -2,33 +2,41 @@ import { useDocument } from "../../hooks/useDocument";
 import cancel from '../../asstes/cancel.svg';
 import AddTest from "./addTest";
 import Button from "../../component/button/button";
-import { useEffect,useState } from "react";
+import { useEffect,useState,useCallback } from "react";
 import { useRef } from "react";
 export default function AddProjectMono({ projName, handleTestFields, deleteMonograph }) {
   const { error, document } = useDocument("substances",projName);
   const [monographList, setMonograpghList] = useState([]);
   const buildObjBasedDocument =useRef()
-  const buildMonographList =()=>{
-  const arr=[]
-   Object.keys(document).forEach((m) => {
-    arr.push(m);
+
+  const buildMonographList = useCallback(() => {
+    const arr = [];
+    Object.keys(document).forEach((m) => {
+      arr.push(m);
     });
-    setMonograpghList(arr)
-  }
+    setMonograpghList(arr);
+  }, [document]);
+  // const buildMonographList =()=>{
+  // const arr=[]
+  //  Object.keys(document).forEach((m) => {
+  //   arr.push(m);
+  //   });
+  //   setMonograpghList(arr)
+  // }
   
   useEffect(() => {
-  if (document) {
-  buildObjBasedDocument.current=document;
-    setMonograpghList([]);
-     buildMonographList();
-  Object.keys(document).forEach((m) => {
-  // const edition = document[m]["monographEdition"];
-  // const monographAndEdition = `${m}/${edition}`;   
+    if (document) {
+      buildObjBasedDocument.current = document;
+      setMonograpghList([]);
+      buildMonographList();
+      Object.keys(document).forEach((m) => {
+        // const edition = document[m]["monographEdition"];
+        // const monographAndEdition = `${m}/${edition}`;
         //handleTestField function is get calles also from AddTest,because that we pass empt string
-    handleTestFields(m, "");
+        handleTestFields(m, "");
       });
     }
-  },[document,projName]);
+  }, [document, projName,buildMonographList, handleTestFields]);
 
   const handleClick = (monoTitle) => {
     deleteMonograph( monoTitle);
@@ -51,6 +59,7 @@ export default function AddProjectMono({ projName, handleTestFields, deleteMonog
   <h3 className="mono-title">
   {monoTitle}/{document[monoTitle]["monographEdition"]}
      <img
+     alt="cancel-icon"
       className="cancel-icon"
       src={cancel}
       onClick={() => {

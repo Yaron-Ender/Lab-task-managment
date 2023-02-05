@@ -18,7 +18,7 @@ const [dueDateArray,setDueDateArray]=useState([]);
 const [testsArray,setTestsArray] = useState([]);
 const [technologyArr,setTechnologyArr]=useState([]);
 const [techWithTests,setTechWithTests]=useState([]);
-const [usersArray,setUsersArray]=useState([]);
+const [,setUsersArray]=useState([]);
 const supervisorBox = useRef();
 const navigate = useNavigate();
 //delete project

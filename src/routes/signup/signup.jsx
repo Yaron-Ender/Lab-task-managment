@@ -18,17 +18,19 @@ const Signup = () => {
   const [employeeNum,setEmployeeNum] =useState(null);
   const [comparePS,setComparePS] = useState(false)
   const { userName,email, employeeNumber,password, confirmPassword } = inputFields;
-  useEffect(()=>{
-  setComparePS(false)
-  if(password===confirmPassword){
-    setComparePS(true)
-  }
-  //find user position
-  if (employeeNumber.length===6) {
-  setEmployeeNum(prev=>(prev=workersID.find(num => num==employeeNumber)))
-  manager(employeeNum);
-}
-},[password,confirmPassword,employeeNumber,position])
+  useEffect(() => {
+    setComparePS(false);
+    if (password === confirmPassword) {
+      setComparePS(true);
+    }
+    //find user position
+    if (employeeNumber.length === 6) {
+      setEmployeeNum(
+        (prev) => (prev = workersID.find((num) => num == employeeNumber))
+      );
+      manager(employeeNum);
+    }
+  }, [password, confirmPassword, employeeNumber, position, employeeNum,manager]);
 
 //update the inputField state
   const handleInput = (e) => {

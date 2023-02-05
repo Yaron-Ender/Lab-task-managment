@@ -20,7 +20,7 @@ const { manager,position } = useISManager();
     setEmployeeNum(prev=>(prev=workersID.find(num => num==employeeNumber)))
     manager(employeeNum)
 }
-},[employeeNumber,position,password])
+},[employeeNumber,position,password,employeeNum,manager])
 const handleInput =(e)=>{
   const{name,value}=e.target
   setInputFields(prev=>({...prev,[name]:value}))

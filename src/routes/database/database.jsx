@@ -1,4 +1,4 @@
-import { useState,useEffect} from "react";
+import { useState,useEffect, useCallback} from "react";
 import { useNavigate,useSearchParams} from "react-router-dom";
 import { useCollection } from "../../hooks/useCollection";
 import { useStyle } from '../../hooks/useStyle';
@@ -13,21 +13,26 @@ const [substanceIdOptions,setSubstanceIdOptions]=useState([])
 const [openCreateNewSub,setOpenCreateNewSub]=useState(false)
 const { arrayOfDocID,error } =useCollection('substances')
 const navigate=useNavigate()
+const _openDatabaseNavbar =useCallback(()=>{
+  openDatabaseNavbar(); //from useStyle
+},[])
  useEffect(() => {
-   if (openDatabaseNavState)//from usestyle
-    {
-   setTimeout(() => {setOpen(true)}, 10);
+   if (openDatabaseNavState) {
+     //from usestyle
+     setTimeout(() => {
+       setOpen(true);
+     }, 10);
    }
-   openDatabaseNavbar()//from useStyle
-   if(arrayOfDocID){
-  arrayOfDocID.forEach((substance)=>{
-setSubstanceIdOptions((prev) => [
-  ...prev,
-  { value: substance, label: substance, color: "#742fcd" },
-]);
-})
+   openDatabaseNavbar(); //from useStyle
+   if (arrayOfDocID) {
+     arrayOfDocID.forEach((substance) => {
+       setSubstanceIdOptions((prev) => [
+         ...prev,
+         { value: substance, label: substance, color: "#742fcd" },
+       ]);
+     });
    }
- },[openDatabaseNavState,open,arrayOfDocID ]);
+ }, [openDatabaseNavState, open, arrayOfDocID, _openDatabaseNavbar]);
  //functions
  const handleOption =(option)=>{
   setSearchParams({filter:option.value})

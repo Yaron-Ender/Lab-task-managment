@@ -1,5 +1,5 @@
 import MonoInput from "../../component/input/MonoInput";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Button from "../../component/button/button";
 import done from "../../asstes/done.svg"
 const SingelTech = ({technology,id,updateTests,monograph}) => {
@@ -8,11 +8,12 @@ const initObj={
       WET:[],
       GC:[]
    }
-const [testList,setTestList]=useState(initObj)
-const [text,setText]=useState('')
+   const [testList,setTestList]=useState(initObj)
+   const [text,setText]=useState('')
+
 useEffect(()=>{
-updateTests(id,testList)
-},[testList])
+ updateTests(id,testList)
+},[testList,id])
 
 const handleClick= (e)=>{
 if(text){
@@ -26,7 +27,7 @@ if(text){
     <div className="select-tech-result">
    <h3>{technology}</h3>
    <ul>
-   {monograph.length>0&&monograph.map(mono=>(
+   {monograph&&monograph.length>0&&monograph.map(mono=>(
    mono.id==id&&
       mono.tests[technology].map(item=>(
     <li key={item}>{item}</li>         

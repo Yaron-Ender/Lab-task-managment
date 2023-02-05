@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import { useState,useEffect }from 'react'
 const WorkersMyAssignmentByDate = ({ singelTest }) => {
   const { test, monograph, projectName } = singelTest;
-  const { comments, dueDate, supervisor, workers } = singelTest.details;
+  const { comments, dueDate, supervisor } = singelTest.details;
 
 const [today,setToday] =useState('')
 

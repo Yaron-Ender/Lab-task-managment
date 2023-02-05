@@ -29,7 +29,7 @@ const AddTest = ({ test,tech, monoTitle, handleTestFields }) => {
     if(textArea||date||workers.length>0){
       handleTestFields("",fields.current,tech,test);
     }
-  }, [textArea,date,workers]);
+  }, [textArea,date,workers,handleTestFields,monoTitle,tech,test]);
 
   const handleDateORcomment = (e) => {  
     const {name,value} = e.target
