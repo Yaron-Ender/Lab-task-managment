@@ -28,7 +28,8 @@ if(text){
    <ul>
    {monograph.length>0&&monograph.map(mono=>(
    mono.id==id&&
-      mono.tests[technology].map(item=>(
+   mono.tests[technology]&&
+   mono.tests[technology].map(item=>(
     <li key={item}>{item}</li>         
       ))
    ))
